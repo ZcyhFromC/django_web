@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model
 
 from mptt.models import MPTTModel, TreeForeignKey
 from taggit.managers import TaggableManager
@@ -29,7 +28,7 @@ class ResourceNode(MPTTModel):
     name = models.CharField(max_length=200)
     tags = TaggableManager(blank=True)
     text = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='nodes')
     date_added = models.DateTimeField(auto_now_add=True)
     link = models.URLField(blank=True, null=True)
     
@@ -46,7 +45,7 @@ class ResourceGroup(models.Model):
     name = models.CharField(max_length=200)
     tags = TaggableManager(blank=True)
     text = models.TextField(blank=True, null=True)
-    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     
     # 资源组
@@ -58,7 +57,7 @@ class ResourceGroup(models.Model):
 # ~ class Comment(models.Model):
     # ~ '''用户评论'''
     # ~ resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
-    # ~ user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    # ~ user = models.ForeignKey(User, on_delete=models.CASCADE)
     # ~ text = models.TextField()
     # ~ date_added = models.DateTimeField(auto_now_add=True)
     

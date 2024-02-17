@@ -1,0 +1,42 @@
+{% extends 'resources/nodes.html' %}
+{% load mptt_tags %}
+
+{% block content %}
+  <a href="{% url 'resources:nodes' 1 %}">返回资源库</a>
+  
+  <ul>
+        
+    <li>
+      他的爸爸：
+      {% if node.is_child_node %}
+        <a href="{% url 'resources:node' parent.id %}">{{ parent.name }}</a>
+      {% else %}
+        没有爸爸。
+      {% endif %}
+    </li>
+    
+    <li>
+      他的儿子们:
+      {% if not node.is_leaf_node %}
+        <ul>
+          {% for child in children %}
+            <a href="{% url 'resources:node' child.id %}"><li>{{ child.name }}</li></a>
+          {% endfor %}
+        </ul>
+      {% else %}
+        没有儿子。
+      {% endif %}
+    </li>
+    
+    <p></p>
+    
+    <li>节点名：{{ node.name }}</li>
+    
+    {% if node.link %}
+      <li>节点资源:<a href="{{ node.link }}" target="_blank">{{ node.link }}</a></li>
+    {% endif %}
+    
+    <li>文字：{{ node.text }}</li>
+    
+  </ul>
+{% endblock content %}

@@ -1,17 +1,12 @@
 from django import forms
-# ~ from .models import Topic, ResourceNode, Comment
+from .models import ResourceNode
 
-# ~ class TopicForm(forms.ModelForm):
-    # ~ class Meta:
-        # ~ model = Topic
-        # ~ fields = {'text', 'description'}
-        # ~ labels = {}
 
-# ~ class ResourceForm(forms.ModelForm):
-    # ~ class Meta:
-        # ~ model = Resource
-        # ~ fields = {'is_group', 'name', 'topic', 'text', 'url', 'parent'}
-        # ~ widgets = {'text': forms.Textarea(attrs={'cols': 80})}
+class ResourceNodeForm(forms.ModelForm):
+    class Meta:
+        model = ResourceNode
+        fields = {'name',  'text',  'parent', 'tags', 'link'}
+        widgets = {'text': forms.Textarea(attrs={'cols': 80})}
 
 # ~ class GroupForm(forms.ModelForm):
     # ~ class Meta:

@@ -1,0 +1,25 @@
+{% extends 'resources/base.html' %}
+{% load mptt_tags %}
+
+{% block content %}
+  <a href="{% url 'resources:index' %}">返回主页</a>
+  
+  <p>用户<strong>{{ user }}</strong>的资源库</p>
+
+  <ul>
+    {% recursetree nodes %}
+      <li>
+        <a href="{% url 'resources:node' node.id %}">{{ node.name }}</a>
+        {% if not node.is_leaf_node %}
+          <ul>{{ children }}</ul>
+        {% endif %}
+      </li>
+    {% endrecursetree %}
+  </ul>
+  
+  
+  <a href="{% url 'resources:new_node' %}">添加</a>
+{% endblock content %}
+
+{% block node_info %}
+{% endblock node_info %}

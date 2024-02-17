@@ -10,29 +10,10 @@ urlpatterns = [
     # 主页
     path('', views.index, name='index'),
     
-    
-    # ~ # 特定topic的详细页面
-    # ~ path('topic/<int:topic_id>', views.topic, name='topic'),# 开始更改
-    # ~ # 所有topic
-    # ~ path('topics', views.topics, name='topics'),
-    # ~ # 新建一个topic
-    # ~ path('new_topic/', views.new_topic, name='new_topic'),
-    # ~ # 删除一个topic
-    # ~ path('delete_topic/<int:topic_id>', views.delete_topic, name='delete_topic'),
-    # ~ # 修改一个topic
-    # ~ path('edit_topic/<int:topic_id>', views.edit_topic, name='edit_topic'),
-    
-    
-    # ~ # 特定ri的详细信息
-    # ~ path('resource/<int:ri_id>', views.resource, name='resource'),
-    # ~ # 新建一个ri
-    # ~ path('new_resource/<int:topic_id>/', views.new_resource, name='new_resource'),
-    # ~ # 修改一个ri
-    # ~ path('edit_resource/<int:ri_id>', views.edit_resource, name='edit_resource'),
-    # ~ # 删除一个ri
-    # ~ path('delete_resource/<int:ri_id>', views.delete_resource, name='delete_resource'),
-    
-    
+    # 节点相关
+    path('nodes/<int:user_id>', views.nodes, name='nodes'),
+    path('node/<int:node_id>', views.node, name='node'),
+    path('new_node/', views.new_node, name='new_node'),
     
     # ~ # 新建一个comment
     # ~ path('new_comment/<int:ri_id>', views.new_comment, name='new_comment'),
