@@ -1,0 +1,5 @@
+确认删除？
+<form action="{% url 'resources:delete_topic' topic.id %}" method='POST'>
+  {% csrf_token %}
+  <button name="submit">确认</button>
+</form>

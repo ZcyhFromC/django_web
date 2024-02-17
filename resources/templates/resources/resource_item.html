@@ -1,0 +1,32 @@
+{% extends 'resources/base.html' %}
+
+{% block content %}
+
+  <p>主题：<a href="{% url 'resources:topic' ri.topic.id %}">{{ ri.topic }}</a></p>
+  
+  <p>资源名：{{ ri.name }}</p>
+  <ul>
+    <li>简介：{{ ri.text|linebreaks }}</li>
+    <li>创建人：{{ ri.user }}</li>
+    {% if ri.url %}
+      <li>跳转链接：<a href="{{ ri.url }}" target="_blank">{{ ri.url }}</a></li>
+    {% endif %}
+    <li>创建日期：{{ ri.date_added }}</li>
+    <li><a href="{% url 'resources:new_comment' ri.id %}">评论</a></li>
+    <li><a href="{% url 'resources:edit_resource' ri.id %}">修改</a></li>
+    <li><a href="{% url 'resources:delete_resource' ri.id %}">删除</a></li>
+  </ul>
+  
+  <p>评论</p>
+  <ul>
+    {% for comment in ri.usercomment_set.all %}
+      <li>评论：{{ comment }}</li>
+      <li>用户：{{ comment.user }}</li>
+      {% if request.user == comment.user %}
+      <li><a href="{% url 'resources:edit_comment' comment.id %}">编辑</a></li>
+      <li><a href="{% url 'resources:delete_comment' comment.id %}">删除</a></li>
+      {% endif %}
+      <p></p>
+    {% endfor %}
+  </ul>
+{% endblock content %}

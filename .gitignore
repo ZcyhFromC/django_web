@@ -1,0 +1,6 @@
+\#venv/
+db.sqlite3
+accounts/migrations/
+resources/migrations/
+本地的备份库/
+resources/templates/resources/废弃的group/

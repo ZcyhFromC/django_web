@@ -1,0 +1,5 @@
+<form action="{% url 'resources:edit_comment' comment.id %}" method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <button name="submit">提交</button>
+</form>

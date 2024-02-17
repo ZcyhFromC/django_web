@@ -1,0 +1,20 @@
+<body>
+  <p>
+    {% if user.is_authenticated %}
+      你好,{{ user.username }}
+    {% else %}
+      <a href="{% url 'accounts:register' %}">Register</a> -
+      <a href="{% url 'accounts:login' %}">Log in</a>
+    {% endif %}
+  </p>
+</body>
+
+{% block content %}{% endblock content %}
+ 
+{% if user.is_authenticated %}
+  <hr />
+  <form action="{% url 'accounts:logout' %}" method="post">
+    {% csrf_token %}
+    <button name="submit">Log out</button>
+  </form>
+{% endif %}

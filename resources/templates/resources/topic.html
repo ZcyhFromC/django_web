@@ -1,0 +1,31 @@
+{% extends 'resources/base.html' %}
+
+{% load mptt_tags %}
+
+{% block content %}
+
+  <p>主题：{{ topic.text }}</p>
+  
+  {% if topic.description %}
+    <p>描述：{{ topic.description }}</p>
+  {% endif %}
+  
+  <p>资源项：</p>
+  <ul>
+    {% if resource_items %}
+      {% recursetree resource_items %}
+        <li>
+          <p><a href="{% url 'resources:resource_item' node.id %}">{{ node.name }}</a></p>
+          {% if not node.is_leaf_node %}
+            <ul>{{ children }}</ul>
+          {% endif %}
+        </li>
+      {% endrecursetree %}
+    {% endif %}
+  </ul>
+  
+  <a href="{% url 'resources:new_resource_item' topic.id %}">添加资源项</a>
+  <a href="{% url 'resources:delete_topic' topic.id %}">删除主题</a>
+  <a href="{% url 'resources:edit_topic' topic.id %}">修改主题</a>
+  
+{% endblock content %}
